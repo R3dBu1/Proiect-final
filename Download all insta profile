@@ -1,0 +1,19 @@
+import instaloader
+bot = instaloader.Instaloader()
+
+# Alegem pagina de insta
+profile = instaloader.Profile.from_username(bot.context, 'aadrian174')
+print(type(profile))
+print("Username: ", profile.username)
+print("User ID: ", profile.userid)
+print("Number of Posts: ", profile.mediacount)
+print("Followers: ", profile.followers)
+print("Followees: ", profile.followees)
+print("Bio: ", profile.biography,profile.external_url)
+
+profile = instaloader.Profile.from_username(bot.context, 'aadrian174')
+posts = profile.get_posts()
+
+# Descarca postarile
+for index, post in enumerate(posts, 1):
+    bot.download_post(post, target=f"{profile.username}_{index}")
